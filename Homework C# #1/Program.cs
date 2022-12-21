@@ -4,11 +4,11 @@
 
 // 2, 4 -> 16
 
-
+Console.Clear();
 int DataNumber(string msg)
 {
     Console.Write(msg);
-    int number = Convert.ToInt32(Console.ReadLine());
+    int number = int.Parse(Console.ReadLine());
     return number;
 }
 
@@ -21,7 +21,7 @@ if(numberB > 0)
     {
      exp = exp*numberA;
     }
-    Console.WriteLine($"Степень числа {numberA} в {numberB} = {Math.Round(exp, 2)}");
+    Console.WriteLine($"Степень числа {numberA} в {numberB} -> {Math.Round(exp, 2)}");
 }
 else if(numberB == 0) exp = 1;
 else
@@ -32,5 +32,5 @@ else
     exp = exp*numberA;
     }
     exp = 1/exp;
-    Console.WriteLine($"Степень числа {numberA} в -{numberB} = {Math.Round(exp, 2)}");
+    Console.WriteLine($"Степень числа {numberA} в -{numberB} -> {Math.Round(exp, 2)}");
 }

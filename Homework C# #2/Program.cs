@@ -6,10 +6,11 @@
 
 // 9012 -> 12
 
+Console.Clear();
 int DataNumber(string msg)
 {
     Console.Write(msg);
-    int number = Convert.ToInt32(Console.ReadLine());
+    int number = int.Parse(Console.ReadLine());
     return number;
 }
 
