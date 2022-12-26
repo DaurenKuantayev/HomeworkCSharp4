@@ -1,36 +1,44 @@
-﻿// Задача 25: Напишите цикл, который принимает на вход два числа (A и B) и возводит число A в натуральную степень B.
-
-// 3, 5 -> 243 (3⁵)
-
-// 2, 4 -> 16
+﻿// ## Задача 34: Задайте массив заполненный случайными положительными трёхзначными числами. 
+// Напишите программу, которая покажет количество чётных чисел в массиве.
 
 Console.Clear();
-int DataNumber(string msg)
+
+int EntryNumber(string str)
 {
-    Console.Write(msg);
+    System.Console.WriteLine(str);
     int number = int.Parse(Console.ReadLine());
     return number;
 }
 
-int numberA = DataNumber("Введите число А ");
-int numberB = DataNumber("Введите число В ");
-double exp = numberA;
-if(numberB > 0)
+int[] AddArrayWithRundomNumbers(int lenght, int min, int max)
 {
-    for (int i = 1; i < numberB; i++)
+    int[] arr = new int[lenght];
+    Random rand =  new Random();
+    for (int i = 0; i < lenght; i++)
     {
-     exp = exp*numberA;
+        arr[i] = rand.Next(min, max + 1);
     }
-    Console.WriteLine($"Степень числа {numberA} в {numberB} -> {Math.Round(exp, 2)}");
+    return arr;
 }
-else if(numberB == 0) exp = 1;
-else
+
+int EvenNumbers(int[] arr)
 {
-    numberB = -numberB;
-    for (int i = 1; i < numberB; i++)
+    int count = 0;
+    for (int i = 0; i < arr.Length; i++)
     {
-    exp = exp*numberA;
+        if(arr[i] % 2 == 0) 
+        {
+            count++;
+        }
     }
-    exp = 1/exp;
-    Console.WriteLine($"Степень числа {numberA} в -{numberB} -> {Math.Round(exp, 2)}");
+    return count;
 }
+
+
+const int BOTLIMIT = 100;
+const int TOPLIMIT = 999;
+int lenghtArr = EntryNumber("Введите размер массива");
+int[] arrey = AddArrayWithRundomNumbers(lenghtArr, BOTLIMIT, TOPLIMIT);
+System.Console.WriteLine('[' + string.Join(", ", arrey) + ']');
+int even = EvenNumbers(arrey);
+System.Console.WriteLine($"Четных чисел в массиве - {even}");

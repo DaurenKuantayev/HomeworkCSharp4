@@ -1,36 +1,47 @@
-﻿// Задача 29: Напишите программу, которая задаёт массив из 8 элементов и выводит их на экран.
+﻿// Задача 38: Задайте массив вещественных чисел. Найдите разницу между максимальным и минимальным элементов массива.
 
-// 1, 2, 5, 7, 19 -> [1, 2, 5, 7, 19]
+Console.Clear();
 
-// 6, 1, 33 -> [6, 1, 33]
-
-int DataSize(string msg)
+int AddNumber(string str)
 {
-    Console.Write(msg);
+    System.Console.WriteLine(str);
     int number = int.Parse(Console.ReadLine());
     return number;
 }
 
-void PrintArray(int[] charr)
+double[] AddArrWithRandomNumbers(int lenght, int min, int max)
 {
-    int i;
-    for (i = 0; i < charr.Length - 1; i++)
+    double[] arr = new double[lenght];
+    Random rand = new Random();
+    for (int i = 0; i < lenght; i++)
     {
-        Console.Write(charr[i] + ", ");
+        arr[i] = rand.Next(min, max) + Math.Round(rand.NextDouble(), 2);
     }
-    Console.Write(charr[i]);
+    return arr;
 }
 
-void RandomIndex(int[] arr)
+void FindMinMax(double[] arr, out double min, out double max)
 {
-    for (int i = 0; i < arr.Length; i++)
+    min = arr[0];
+    max = arr[0];
+    for (int i = 1; i < arr.Length; i++)
     {
-        arr[i] = new Random().Next(0, 100);
+        if (arr[i] < min)
+            min = arr[i];
+        if (arr[i] > max)
+            max = arr[i];
     }
 }
 
-Console.Clear();
-int index = DataSize("Укажите размер массива ");
-int[] array = new int[index];
-RandomIndex(array);
-PrintArray(array);
+const int BOTLIMIT = 0;
+const int TOPLIMIT = 100;
+int arrLenght = AddNumber("Введите размер масива");
+if (arrLenght == 1)
+    System.Console.WriteLine("В масиве одно значение");
+else
+{
+    double[] arrey = AddArrWithRandomNumbers(arrLenght, BOTLIMIT, TOPLIMIT);
+    System.Console.WriteLine('[' + string.Join("; ", arrey) + ']');
+    FindMinMax(arrey, out double min, out double max);
+    System.Console.WriteLine($"Минимальное значение({min}) меньше максимального ({max}) на {max - min}");
+}
